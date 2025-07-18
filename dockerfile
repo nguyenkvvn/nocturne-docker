@@ -47,4 +47,7 @@ WORKDIR /home/builder
 
 RUN git clone --depth=1 https://github.com/void-linux/void-packages.git
 
+COPY bootstrap-build-env-in-docker.sh /home/builder/finish-init.sh
+RUN sudo chmod +x /home/builder/finish-init.sh
+
 CMD ["/bin/bash"]
