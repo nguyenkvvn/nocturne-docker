@@ -31,10 +31,6 @@ license="GPL-2.0-only"
 homepage="https://github.com/pengutronix/genimage"
 distfiles="https://github.com/pengutronix/genimage/releases/download/v${version}/genimage-${version}.tar.xz"
 checksum=7ec4fcb865662a8b2ff20284819044ffa84137bf3ca16fb749701291bc01f108
-
-do_install() {
-    install -Dm755 ${wrksrc}/genimage ${DESTDIR}/usr/bin/genimage
-}
 EOF
 
 # Prepare xbps-src
@@ -49,12 +45,13 @@ echo "BUILD_CHROOT=false" >> etc/conf
 # Resolve libconfuse confusion
 sudo xbps-install -y -R hostdir/binpkgs libconfuse
 
-# Force install genimage
-sudo xbps-install -y -R hostdir/binpkgs genimage
-
 # Manually install mkpasswd
 wget https://ftp.debian.org/debian/pool/main/w/whois/whois_5.5.17.tar.xz
 tar -xf whois_5.5.17.tar.xz
 cd whois-5.5.17
 make mkpasswd
 sudo install -Dm755 mkpasswd /usr/bin/mkpasswd
+
+# Force install genimage
+cd ~/void-packages
+sudo xbps-install -y -R hostdir/binpkgs genimage
