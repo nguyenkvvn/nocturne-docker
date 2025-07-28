@@ -36,6 +36,10 @@ RUN xbps-install -y dosfstools
 RUN xbps-install -y prelink
 RUN xbps-install -y e2fsprogs
 RUN xbps-install -y pigz
+RUN xbps-install -y mtools
+# Add ARM64 build support in GitHub Actions
+RUN xbps-install -y qemu-user-static
+
 
 # Install just binary from GitHub releases
 RUN curl -L https://github.com/casey/just/releases/download/1.42.2/just-1.42.2-x86_64-unknown-linux-musl.tar.gz \

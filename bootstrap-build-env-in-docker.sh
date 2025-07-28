@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd ~/void-packages
 
 # Create libconfuse template
@@ -35,7 +37,7 @@ EOF
 
 # Prepare xbps-src
 echo "XBPS_ALLOW_CHROOT_BREAKOUT=yes" >> etc/conf
-echo "BUILD_CHROOT=false" >> etc/conf
+echo "BUILD_CHROOT=no" >> etc/conf
 
 # Build packages
 ./xbps-src binary-bootstrap
@@ -55,3 +57,5 @@ sudo install -Dm755 mkpasswd /usr/bin/mkpasswd
 # Force install genimage
 cd ~/void-packages
 sudo xbps-install -y -R hostdir/binpkgs genimage
+
+cd ..
